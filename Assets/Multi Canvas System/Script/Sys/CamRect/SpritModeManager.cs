@@ -7,6 +7,8 @@ public class SpritModeManager : MonoBehaviour
 
     private List<CamInfo> CamList = new List<CamInfo>();
 
+    private SplitMode splitMode;
+
     // 各モードで画面を何分割するか記載した定数
     private static Dictionary<SplitMode, int> splitModeDic = new Dictionary<SplitMode, int>()
     {
@@ -42,6 +44,7 @@ public class SpritModeManager : MonoBehaviour
     // セットした値に応じて画面分割を変更する
     public void ChangeSplitMode(SplitMode mode)
     {
+        splitMode = mode;
         // 使用するカメラオブジェクト特定
         // すでに登録されているカメラが存在しないならindex順に登録する
         if(SelectedCamIndexList.Count == 0)

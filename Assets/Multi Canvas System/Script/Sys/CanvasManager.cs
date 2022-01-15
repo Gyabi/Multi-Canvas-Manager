@@ -4,22 +4,23 @@ using UnityEngine;
 
 public class CanvasManager : MonoBehaviour
 {
+    // シングルトン用staticメンバ
     private static CanvasManager _instance;
 
-    [SerializeField]
+    [SerializeField,Header("MainCanvasのprefabリスト")]
     private Canvas MainCanvas;
 
-    [SerializeField]
+    [SerializeField,Header("SubCanvasのprefabリスト")]
     private List<SubCanvasInfo> SubCanvasList = new List<SubCanvasInfo>();
 
-    [SerializeField]
+    [SerializeField,Header("scene内のカメラのリスト")]
     private List<CamInfo> CamList = new List<CamInfo>();
 
     // サブキャンバス数
     private int SubCanvasNum;
     // メインキャンバスのインスタンス
     private Canvas MainCanvasInstance;
-    // サブキャンバスのインスタンスを格納する配列
+    // 生成したサブキャンバスのインスタンスを格納する配列
     private List<Canvas> SubCanvasInstanceList = new List<Canvas>();
     // SubCanvasListの中の各canvasがいくつインスタンス化されたか格納する配列
     private List<int> SelectedSubCanvasIndexList = new List<int>();
@@ -135,5 +136,28 @@ public class CanvasManager : MonoBehaviour
             splitMode = mode;
             splitModeManager.GetComponent<SpritModeManager>().ChangeSplitMode(mode);
         }
+    }
+
+    public SplitMode GetSplitMode()
+    {
+        return splitMode;
+    }
+    public List<CamInfo> GetCamList()
+    {
+        return CamList;
+    }
+
+    public List<int> GetSelectedCamIndexList()
+    {
+        return splitModeManager.GetComponent<SpritModeManager>().GetSelectedCamIndexList();
+    }
+    public int GetSplitModeDicNum(SplitMode mode)
+    {
+        return splitModeManager.GetComponent<SpritModeManager>().GetSplitModeDicNum(mode);
+    }
+
+    public void ChangeSelectedCamIndexList(List<int> indexList)
+    {
+        splitModeManager.GetComponent<SpritModeManager>().ChangeSelectedCamIndexList(indexList);
     }
 }

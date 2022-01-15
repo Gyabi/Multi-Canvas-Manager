@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class SpritModeManager : MonoBehaviour
 {
-
+    // 手動でインスペクターから設定したカメラ情報
     private List<CamInfo> CamList = new List<CamInfo>();
 
+    // 現在の分割モード
     private SplitMode splitMode;
 
     // 各モードで画面を何分割するか記載した定数
@@ -19,9 +20,11 @@ public class SpritModeManager : MonoBehaviour
         { SplitMode.Four, 4 }
     };
 
+    // 設定したカメラの数
     private int CamNum;
 
     // 実際に描画するカメラのインデックス
+    // 3分割なら[1,0,3]のような形で格納される
     private List<int> SelectedCamIndexList = new List<int>();
     // Start is called before the first frame update
     void Start()
@@ -34,7 +37,7 @@ public class SpritModeManager : MonoBehaviour
     {
         
     }
-
+    // managerからstartで呼ばれる関数
     public void SetData(List<CamInfo> camList)
     {
         CamList = camList;
@@ -81,6 +84,12 @@ public class SpritModeManager : MonoBehaviour
             }
         }
 
+        // 更新した内容で分割を実行
+        ExecuteSplit(mode);
+    }
+
+    private void ExecuteSplit(SplitMode mode)
+    {
         // 特定したオブジェクト表示、非表示
         for(int i = 0; i < CamNum; i++)
         {
@@ -121,11 +130,30 @@ public class SpritModeManager : MonoBehaviour
                 break;
                 
         }
+    }
 
+    // 引数でCamlistに対応するindexのリストを受け取り、内容を反映、その後実際にカメラ分割を再実行する
+    public void ChangeSelectedCamIndexList(List<int> indexList)
+    {
+        if(indexList.Count == splitModeDic[splitMode])
+        {
+            SelectedCamIndexList = indexList;
+            ExecuteSplit(splitMode);
+        }
     }
 
     public bool SplitModeChangeJudge(SplitMode mode)
     {
         return CamNum >= splitModeDic[mode];
+    }
+
+    public int GetSplitModeDicNum(SplitMode mode)
+    {
+        return splitModeDic[mode];
+    }
+
+    public List<int> GetSelectedCamIndexList()
+    {
+        return SelectedCamIndexList;
     }
 }

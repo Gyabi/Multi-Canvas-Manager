@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class MainCreateSubDropdown : MonoBehaviour
 {
+    // タブ生成のドロップダウンを作成
     Dropdown dropdown;
     // Start is called before the first frame update
     void Start()

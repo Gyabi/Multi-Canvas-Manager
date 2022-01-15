@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SubCanvas : MonoBehaviour
 {
+    // managerからサブキャンバスを生成したときにアタッチして自身の情報を保持させるコンポーネント
     private SubCanvasInfo subCanvasInfo;
     // managerでsub一覧をlistで纏めているがその何番目に当たるか
     private int subCanvasTypeIndex;

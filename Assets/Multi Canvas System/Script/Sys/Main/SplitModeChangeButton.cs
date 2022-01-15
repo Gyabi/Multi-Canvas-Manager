@@ -24,6 +24,7 @@ public class SplitModeChangeButton : MonoBehaviour
         
     }
 
+    // クリックしたときにcanvasmanagerへ分割モードを買えるように命令
     public void OnClickSplitModeChangeButton()
     {
         // スプリットモードを切り替える
@@ -53,6 +54,6 @@ public class SplitModeChangeButton : MonoBehaviour
 
 
         CanvasManager.Instance.SetCamMode(mode);
-        Debug.Log("SplitModeChangeButton");
+        // Debug.Log("SplitModeChangeButton");
     }
 }

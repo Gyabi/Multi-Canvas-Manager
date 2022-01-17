@@ -33,24 +33,45 @@ public class MoveSubCanvasTab : MonoBehaviour
 
     void OnDrag(PointerEventData data)
     {
-        // Debug.Log(data.currentInputModule.ToString());
+        // // Debug.Log(data.currentInputModule.ToString());
+        // Vector3 mousePos = Input.mousePosition;
+        // // 描画範囲にタブが収まるときにはドラッグで移動させる
+        // if(rectTransform.sizeDelta.x/2 > Input.mousePosition.x) 
+        // {
+        //     mousePos.x = rectTransform.sizeDelta.x/2;
+        // }
+        // if(Input.mousePosition.x > pearentRectTransform.sizeDelta.x - rectTransform.sizeDelta.x/2)
+        // {
+        //     mousePos.x = pearentRectTransform.sizeDelta.x - rectTransform.sizeDelta.x/2;
+        // }
+        // if(rectTransform.sizeDelta.y/2 > Input.mousePosition.y)
+        // {
+        //     mousePos.y = rectTransform.sizeDelta.y/2;
+        // }
+        // if(Input.mousePosition.y > pearentRectTransform.sizeDelta.y - rectTransform.sizeDelta.y/2)
+        // {
+        //     mousePos.y = pearentRectTransform.sizeDelta.y - rectTransform.sizeDelta.y/2;
+        // }
+        // rectTransform.position = mousePos;
+
+        // // Debug.Log(data.currentInputModule.ToString());
         Vector3 mousePos = Input.mousePosition;
-        // 描画範囲にタブが収まるときにはドラッグで移動させる
+        // // 描画範囲にタブが収まるときにはドラッグで移動させる
         if(rectTransform.sizeDelta.x/2 > Input.mousePosition.x) 
         {
             mousePos.x = rectTransform.sizeDelta.x/2;
         }
-        if(Input.mousePosition.x > pearentRectTransform.sizeDelta.x - rectTransform.sizeDelta.x/2)
+        if(Input.mousePosition.x > Screen.width - rectTransform.sizeDelta.x/2)
         {
-            mousePos.x = pearentRectTransform.sizeDelta.x - rectTransform.sizeDelta.x/2;
+            mousePos.x = Screen.width - rectTransform.sizeDelta.x/2;
         }
         if(rectTransform.sizeDelta.y/2 > Input.mousePosition.y)
         {
             mousePos.y = rectTransform.sizeDelta.y/2;
         }
-        if(Input.mousePosition.y > pearentRectTransform.sizeDelta.y - rectTransform.sizeDelta.y/2)
+        if(Input.mousePosition.y > Screen.height - rectTransform.sizeDelta.y/2)
         {
-            mousePos.y = pearentRectTransform.sizeDelta.y - rectTransform.sizeDelta.y/2;
+            mousePos.y = Screen.height - rectTransform.sizeDelta.y/2;
         }
         rectTransform.position = mousePos;
     }
